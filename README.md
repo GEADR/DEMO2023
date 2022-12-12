@@ -51,7 +51,8 @@
 
 ```debian
 hostnamectl set-hostname RTR-L
-nano /etc/network/interfaces```
+nano /etc/network/interfaces
+```
 ```
 auto ens33
 iface ens33 inet static
