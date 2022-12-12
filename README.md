@@ -49,10 +49,10 @@
 
 #### RTR-L
 
-(Debian)
+```debian
 hostnamectl set-hostname RTR-L
 nano /etc/network/interfaces
-```
+
 auto ens33
 iface ens33 inet static
 address 4.4.4.100
@@ -74,8 +74,7 @@ mode gre
 local 4.4.4.100
 endpoint 5.5.5.100
 ttl 65
-```
-```
+
 ip r
 #default via 4.4.4.1 dev ens192 onlink
 #4.4.4.0/24 dev ens33 proto kernel scope link src 4.4.4.100
