@@ -49,11 +49,41 @@
 
 #### RTR-L
 
-```cisco
-en
-conf t
-hostname RTR-L
-do wr
+```debian
+hostnamectl set-hostname RTR-L
+nano /etc/network/interfaces
+
+auto ens33
+iface ens33 inet static
+address 4.4.4.100
+netmask 255.255.255.0
+gateway 4.4.4.1
+
+#ens224
+auto ens36
+iface ens36 inet static
+address 192.168.100.254
+netmask 255.255.255.0
+dns-search int.demo.wsr
+dns-nameservers 192.168.100.200
+
+#gre1
+auto gre1
+iface gre1 inet tunnel
+address 10.10.10.1
+netmask 255.255.255.252
+mode gre
+local 4.4.4.100
+endpoint 5.5.5.100
+ttl 65
+
+ip r
+#default via 4.4.4.1 dev ens192 onlink
+#4.4.4.0/24 dev ens33 proto kernel scope link src 4.4.4.100
+#10.10.10.0/30 dev gre1 proto kernel scope link src 10.10.10.1
+#172.16.100.0/24 nhid 88 via 10.10.10.2 dev gre1 proto ospf metric 20
+#192.168.100.0/24 dev ens224 proto kernel scope link src 192.168.100.254
+
 ```
 
 
