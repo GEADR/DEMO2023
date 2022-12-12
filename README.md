@@ -77,6 +77,7 @@ Rename-Computer -NewName SRV
 
 ```debian
 hostnamectl set-hostname WEB-L
+apt install -y bind9 network-manager cifs-utils
 ```
 
 
@@ -93,6 +94,32 @@ hostnamectl set-hostname WEB-R
 
 ```debian
 hostnamectl set-hostname ISP
+
+nano /etc/network/interfaces
+
+auto ens33
+iface ens33 inet static
+address 4.4.4.1
+netmask 255.255.255.0
+
+auto ens36
+iface ens36 inet static
+address 5.5.5.1
+netmask 255.255.255.0
+
+auto ens37 
+iface ens37 inet static
+address 3.3.3.1
+netmask 255.255.255.0
+dns-search demo.wsr
+
+nano /etc/sysctl.conf
+net.ipv4.ip_forward=1
+
+ip r
+#3.3.3.0/24 dev ens33 proto kernel scope link src 3.3.3.1
+#4.4.4.0/24 dev ens34 proto kernel scope link src 4.4.4.1
+#5.5.5.0/24 dev ens35 proto kernel scope link src 5.5.5.1
 ```
 
 
