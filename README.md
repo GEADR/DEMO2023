@@ -146,6 +146,8 @@ ip r
 #3.3.3.0/24 dev ens33 proto kernel scope link src 3.3.3.1
 #4.4.4.0/24 dev ens34 proto kernel scope link src 4.4.4.1
 #5.5.5.0/24 dev ens35 proto kernel scope link src 5.5.5.1
+
+systemctl disable --now apparmor ВСЕМ МАШИНАМ
 ```
 
 
